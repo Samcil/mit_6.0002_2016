@@ -4,7 +4,7 @@ Created on Tue Jul 12 15:04:56 2016
 
 @author: guttag, revised egrimson
 """
-
+#%%
 class Node(object):
     def __init__(self, name):
         """Assumes name is a string"""
@@ -24,7 +24,7 @@ class Edge(object):
     def getDestination(self):
         return self.dest
     def __str__(self):
-        return self.src.getName() + '->' + self.dest.getName()
+        return f"{self.src.getName()} -> {self.dest.getName()}"
                
 class Digraph(object):
     """edges is a dict mapping each node to a list of
@@ -64,6 +64,7 @@ class Graph(Digraph):
         Digraph.addEdge(self, edge)
         rev = Edge(edge.getDestination(), edge.getSource())
         Digraph.addEdge(self, rev)
+#%%
     
 def buildCityGraph(graphType):
     g = graphType()
@@ -81,6 +82,7 @@ def buildCityGraph(graphType):
     g.addEdge(Edge(g.getNode('Denver'), g.getNode('New York')))
     g.addEdge(Edge(g.getNode('Los Angeles'), g.getNode('Boston')))
     return g
+#%%
 
 
 def printPath(path):
@@ -126,6 +128,7 @@ def testSP(source, destination):
               destination, 'is', printPath(sp))
     else:
         print('There is no path from', source, 'to', destination)
+#%%
 
 testSP('Chicago', 'Boston')
 print()
@@ -134,6 +137,7 @@ print()
 
 printQueue = True 
 
+#%%
 def BFS(graph, start, end, toPrint = False):
     """Assumes graph is a Digraph; start and end are nodes
        Returns a shortest path from start to end in graph"""

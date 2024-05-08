@@ -1,5 +1,5 @@
 
-
+#%%
 class Food(object):
     def __init__(self, n, v, w):
         self.name = n
@@ -12,8 +12,7 @@ class Food(object):
     def density(self):
         return self.getValue()/self.getCost()
     def __str__(self):
-        return self.name + ': <' + str(self.value)\
-                 + ', ' + str(self.calories) + '>'
+        return f"{self.name} : < {str(self.value)} {self.calories} >"
 
 def buildMenu(names, values, calories):
     menu = []
@@ -86,7 +85,7 @@ def testMaxVal(foods, maxUnits, printItems = True):
     if printItems:
         for item in taken:
             print('   ', item)
-
+#%%
 names = ['wine', 'beer', 'pizza', 'burger', 'fries',
          'cola', 'apple', 'donut', 'cake']
 values = [89,90,95,100,90,79,50,10]
@@ -97,6 +96,7 @@ testGreedys(foods, 750)
 print('')
 testMaxVal(foods, 750)
 
+#%%
 import random
 
 def buildLargeMenu(numItems, maxVal, maxCost):
@@ -107,21 +107,23 @@ def buildLargeMenu(numItems, maxVal, maxCost):
                           random.randint(1, maxCost)))
     return items
 
-#for numItems in (5, 10, 15, 20, 25, 30, 35, 40, 45):
-#    print('Try a menu with', numItems, 'items')
-#    items = buildLargeMenu(numItems, 90, 250)
-#    testMaxVal(items, 750, False)  
-
+for numItems in (5, 10, 15, 20, 25, 30, 35, 40, 45):
+   print('Try a menu with', numItems, 'items')
+   items = buildLargeMenu(numItems, 90, 250)
+   testMaxVal(items, 750, False)  
+   
+#%%
 def fib(n):
     if n == 0 or n == 1:
         return 1
     else:
         return fib(n - 1) + fib(n - 2)
 
-#for i in range(121):
-#    print('fib(' + str(i) + ') =', fib(i))
+for i in range(121):
+   print(f"fib({i}) = {fib(i)}")
 
 
+#%%
 def fastFib(n, memo = {}):
     """Assumes n is an int >= 0, memo used only by recursive calls
        Returns Fibonacci of n"""
@@ -134,9 +136,10 @@ def fastFib(n, memo = {}):
         memo[n] = result
         return result
 
-#for i in range(121):
-#    print('fib(' + str(i) + ') =', fastFib(i))
+for i in range(121):
+   print(f"fib({i}) = {fastFib(i)}")
 
+#%%
 def fastMaxVal(toConsider, avail, memo = {}):
     """Assumes toConsider a list of subjects, avail a weight
          memo supplied by recursive calls
@@ -177,6 +180,8 @@ def testMaxVal(foods, maxUnits, algorithm, printItems = True):
         for item in taken:
             print('   ', item)
           
-#for numItems in (5, 10, 15, 20, 25, 30, 35, 40, 45, 50):
-#    items = buildLargeMenu(numItems, 90, 250)
-#    testMaxVal(items, 750, fastMaxVal, True)
+for numItems in (5, 10, 15, 20, 25, 30, 35, 40, 45, 50):
+   items = buildLargeMenu(numItems, 90, 250)
+   testMaxVal(items, 750, fastMaxVal, True)
+
+# %%
